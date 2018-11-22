@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
 # Compiled class file
-Keys.class
+
 
 # Log file
 *.log
@@ -47,3 +47,4 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
+/archive/src/main/java/Api/Keys.java
