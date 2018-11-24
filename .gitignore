@@ -48,3 +48,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 /archive/src/main/java/Api/Keys.java
+archive/src/main/resources/
+archive/src/test/

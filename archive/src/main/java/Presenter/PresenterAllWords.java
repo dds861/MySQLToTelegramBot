@@ -90,16 +90,16 @@ public class PresenterAllWords {
         //adds from new list to old list
         oldChatList.addAll(newListReversed);
 
-        String s1 = "";
+        StringBuilder s1 = new StringBuilder();
         for (String s2 : newChatList) {
-            s1 += s2;
+            s1.append(s2);
         }
 
 
         System.out.println("Message length" + s1.length());
-        if (!(s1.equals("")) && s1.length() < 4096) {
+        if (!(s1.toString().equals("")) && s1.length() < 4096) {
 
-            onSendToTelegram(s1);
+            onSendToTelegram(s1.toString());
         }
 
 //        System.out.println("sortArrayList() finished");
@@ -118,12 +118,17 @@ public class PresenterAllWords {
             String evenTime = usersAllWords.getEventTime().substring(10);
 
             //if nickname greater than 10 characters, make it shorter
-            String lastName;
+            StringBuilder lastName;
             int maxNameLength = 10;
             if (usersAllWords.getLastName().length() > maxNameLength) {
-                lastName = usersAllWords.getLastName().substring(0, Math.min(usersAllWords.getLastName().length(), maxNameLength)) + "...";
+                lastName = new StringBuilder(usersAllWords.getLastName().substring(0, Math.min(usersAllWords.getLastName().length(), maxNameLength-3)) + "___.");
+            } else if (usersAllWords.getLastName().length() < maxNameLength) {
+                lastName = new StringBuilder(usersAllWords.getLastName());
+                for (int i = 0; i < maxNameLength - usersAllWords.getLastName().length(); i++) {
+                    lastName.append("_");
+                }
             } else {
-                lastName = usersAllWords.getLastName();
+                lastName = new StringBuilder(usersAllWords.getLastName());
             }
 
             //getting message
@@ -142,7 +147,8 @@ public class PresenterAllWords {
                     + lastName
                     + ": "
                     + messageToSend
-                    + "%0D%0A");
+                    + "%0A"
+            );
         }
 //        System.out.println("getList() returned");
         return newChatList;
